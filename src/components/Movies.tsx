@@ -12,8 +12,8 @@ interface Props {
 }
 
 const Movies = ({ caption, hasTypeof, data, type }: Props) => {
-  const [typeMovie, setTypeMovie] = useState(false);
-  const [typeTvShow, setTypeTvShow] = useState(true);
+  const [typeMovie, setTypeMovie] = useState(true);
+  const [typeTvShow, setTypeTvShow] = useState(false);
   const movies = data?.filter((movie: Movie) => movie.media_type === 'movie');
   const tvShows = data?.filter((movie: Movie) => movie.media_type === 'tv');
 
@@ -57,7 +57,7 @@ const Movies = ({ caption, hasTypeof, data, type }: Props) => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-[16px] sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {handleRender()}
       </div>
     </div>

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Footer from '@/components/Footer';
 import SocialIcons from '@/components/SocialIcons';
 import Navbar from '@/components/Navbar';
+import Search from '@/components/Search';
 
 const LandingPage = () => {
   return (
@@ -17,19 +18,7 @@ const LandingPage = () => {
             <Image className="w-[80px] m-4" src={Logo} alt="" />
             <h2 className="text-2xl text-white p-4 font-extrabold">TinyZone</h2>
           </div>
-          <div className="w-[90%] flex ">
-            <input
-              className="w-full p-2 rounded-l-[4px] border-none outline-none"
-              placeholder="Enter keywords"
-              type="text"
-            />
-            <Link
-              href="/home"
-              className="text-white px-6 py-2 bg-[#d41f1c] flex items-center rounded-r-[4px] font-bold "
-            >
-              <AiOutlineSearch />
-            </Link>
-          </div>
+          <Search type="landing search" />
           <SocialIcons />
           <Link
             href="/home"

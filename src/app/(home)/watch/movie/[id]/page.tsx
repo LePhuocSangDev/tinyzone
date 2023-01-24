@@ -17,11 +17,19 @@ const TrailerPage = async ({ params }: { params: { id: string } }) => {
     `${BASE_URL}/movie/${id}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
   );
   const similarMovies = similarData.results;
-  const trailer = await fetchData(
+  const trailerData = await fetchData(
     `${BASE_URL}/movie/${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
   );
+  const trailer = trailerData.results;
   return (
-    <Watch data={movie} id={id} type="movie" isLoading={isLoading} similarMovies={similarMovies} />
+    <Watch
+      data={movie}
+      id={id}
+      type="movie"
+      isLoading={isLoading}
+      similarMovies={similarMovies}
+      trailer={trailer}
+    />
   );
 };
 

@@ -23,7 +23,6 @@ const TvShowsPage = async ({ params }: { params: { id: string } }) => {
   const trailer = await fetchData(
     `${BASE_URL}/movie/${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
   );
-
   const createArray = () => {
     let arr = [];
     for (let i = 1; i <= tvDetails.number_of_seasons; i++) arr.push(i);
@@ -38,6 +37,7 @@ const TvShowsPage = async ({ params }: { params: { id: string } }) => {
       isLoading={isLoading}
       similarMovies={similarTv}
       seasons={seasons}
+      trailer={trailer}
     />
   );
 };

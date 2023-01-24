@@ -27,7 +27,7 @@ const MovieCards = ({ movie, mediaType, size }: Props) => {
         onMouseOut={() => setShow(false)}
         className={`${
           size === 'lg' && 'w-[20vw] max-w-[240px] min-w-[190px]'
-        } hover:opacity-60 cursor-pointer`}
+        } hover:opacity-60 cursor-pointer shadow-md shadow-black`}
       >
         {/* // Play button */}
         <div className="relative w-full h-full">
@@ -41,13 +41,13 @@ const MovieCards = ({ movie, mediaType, size }: Props) => {
           <Image
             className="w-full h-full object-cover"
             src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
-            alt="/"
+            alt="No image to show"
             width="300"
             height="500"
           />
         </div>
-        <div>
-          <h4 className="text-white font-[600] text-md lg:py-2">
+        <div className="h-[102px] flex flex-col justify-center pl-2">
+          <h4 className="text-white font-[600] text-sm lg:py-2">
             {movie?.title || movie?.original_title || movie?.name || movie?.original_name}
           </h4>
           <div className="text-[#aaa] text-[12px] lg:text-sm flex items-center">

@@ -4,10 +4,11 @@ import Loader from '@/components/Loader/Loader';
 import MovieCards from '@/components/MovieCards';
 import ScrollToTop from '@/components/ScrollToTop';
 import SocialIcons from '@/components/SocialIcons';
+import TrailerModal from '@/components/TrailerModal';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { AiFillCaretDown, AiFillCaretRight, AiOutlineDislike, AiOutlineLike } from 'react-icons/ai';
+import { AiFillCaretRight, AiOutlineDislike, AiOutlineLike } from 'react-icons/ai';
 import { BsCameraVideoFill, BsFillPlayFill } from 'react-icons/bs';
 import { Episode, Movie } from 'typings';
 
@@ -18,13 +19,15 @@ interface Props {
   id: string;
   similarMovies: Movie[];
   seasons?: number[];
+  trailer: { key: string }[];
 }
 
-const Watch = ({ isLoading, type, data, similarMovies, id, seasons }: Props) => {
+const Watch = ({ isLoading, type, data, similarMovies, id, seasons, trailer }: Props) => {
   const [eps, setEps] = useState('1');
   const [selectedEps, setSelectedEps] = useState('');
   const [season, setSeason] = useState('1');
   const [episodes, setEpisodes] = useState([]);
+  const [isShowing, setIsShowing] = useState(false);
 
   useEffect(() => {
     const fetchEpisodes = async () => {
@@ -100,6 +103,7 @@ const Watch = ({ isLoading, type, data, similarMovies, id, seasons }: Props) => 
                     className="h-auto"
                     width={300}
                     height={300}
+                    priority
                   />
                   <div className="py-4">
                     <p>
@@ -120,10 +124,13 @@ const Watch = ({ isLoading, type, data, similarMovies, id, seasons }: Props) => 
                     </button>
                   </div>
                 </div>
-                <div className="flex-5 flex gap-4 flex-col text-white">
+                <div className="flex-4 flex gap-4 flex-col text-white">
                   <h4 className="text-3xl text-white">{data.original_title || data.name}</h4>
                   <div className="flex gap-2">
-                    <button className="flex gap-1 items-center p-1 rounded-sm text-black bg-white">
+                    <button
+                      onClick={() => setIsShowing(true)}
+                      className="flex gap-1 items-center p-1 rounded-sm text-black bg-white"
+                    >
                       <BsCameraVideoFill /> Trailer
                     </button>
                     <button className="p-1 rounded-sm text-black bg-white font-bold">HD</button>
@@ -164,22 +171,25 @@ const Watch = ({ isLoading, type, data, similarMovies, id, seasons }: Props) => 
                       <p className="font-bold">
                         Language:{' '}
                         <span className="font-thin">
-                          {/* {data?.spoken_languages && data?.spoken_languages[0].english_name} */}
+                          {data?.spoken_languages &&
+                            data?.spoken_languages.length > 0 &&
+                            data?.spoken_languages[0].english_name}
                         </span>
                       </p>
                       <p className="font-bold">
                         Production Company:{' '}
                         <span className="font-thin">
-                          {/* {data?.production_companies && data?.production_companies[0].name} */}
+                          {data?.production_companies &&
+                            data?.production_companies.length > 0 &&
+                            data?.production_companies[0].name}
                         </span>
                       </p>
                     </div>
                   </div>
                 </div>
-                {/* <div className="flex-1 hidden lg:flex gap-2 flex-col ">
+                <div className="flex-1 flex gap-2 flex-col lg:block">
                   <a
-                    href={`https://2embed.org/embed/datatmdb=${id}`}
-                    target="blank"
+                    href="#"
                     className="w-full px-2 py-2 block text-white rounded-sm text-center bg-[#9b1a29]"
                   >
                     Watch Now
@@ -187,7 +197,7 @@ const Watch = ({ isLoading, type, data, similarMovies, id, seasons }: Props) => 
                   <button className="w-full px-2 py-2 rounded-sm text-center bg-white">
                     + Add favorite
                   </button>
-                </div> */}
+                </div>
               </div>
               <div className="flex gap-4 flex-wrap pt-4">
                 <a href="/" className="block p-1 bg-white rounded-md">
@@ -287,12 +297,17 @@ const Watch = ({ isLoading, type, data, similarMovies, id, seasons }: Props) => 
             </div>
             <div>
               <p className="text-white text-2xl">You may also like</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[8px]">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 {similarMovies?.map((movie: Movie, index: number) => (
-                  <MovieCards mediaType={data.media_type} movie={movie} key={index} />
+                  <MovieCards
+                    mediaType={type === 'tv' ? 'tv' : 'movie'}
+                    movie={movie}
+                    key={index}
+                  />
                 ))}
               </div>
             </div>
+            <TrailerModal isShowing={isShowing} setIsShowing={setIsShowing} trailer={trailer} />
           </div>
         </>
       )}

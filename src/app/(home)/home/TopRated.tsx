@@ -30,7 +30,7 @@ const TopRated = ({ data }: { data: Movie[] }) => {
           />
         </button>
         <div
-          className="flex overflow-x-scroll scroll-smooth container hidden-x-scrollbar"
+          className="flex gap-2 overflow-x-scroll scroll-smooth container hidden-x-scrollbar"
           id="slider"
         >
           {data.map((movie: Movie, index: number) => (

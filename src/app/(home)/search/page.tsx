@@ -18,7 +18,6 @@ const SearchPage = async ({ searchParams }: Props) => {
 
   const data = await fetchData();
   const searchResults = data.results;
-  console.log(searchResults);
   return <Movies hasTypeof data={searchResults} />;
 };
 
