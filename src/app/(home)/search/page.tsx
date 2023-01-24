@@ -1,8 +1,14 @@
 import Movies from '@/components/Movies';
+import { NextPage } from 'next';
 import React from 'react';
-
-const page = async ({ searchParams }: { searchParams: any }) => {
-  const query = searchParams.q.toLowerCase();
+interface SearchParams {
+  q?: string;
+}
+interface Props {
+  searchParams?: SearchParams;
+}
+const SearchPage = async ({ searchParams }: Props) => {
+  const query = searchParams?.q?.toLowerCase();
 
   const fetchData = async () => {
     const res = await fetch(
@@ -13,8 +19,7 @@ const page = async ({ searchParams }: { searchParams: any }) => {
   };
   const data = await fetchData();
   const searchResults = data.results;
-  console.log(searchResults);
   return <Movies hasTypeof data={searchResults} />;
 };
 
-export default page;
+export default SearchPage;
