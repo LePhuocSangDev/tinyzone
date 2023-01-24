@@ -18,10 +18,9 @@ interface Props {
   id: string;
   similarMovies: Movie[];
   seasons?: number[];
-  episodesSS1: Episode[];
 }
 
-const Watch = ({ isLoading, type, data, similarMovies, id, seasons, episodesSS1 }: Props) => {
+const Watch = ({ isLoading, type, data, similarMovies, id, seasons }: Props) => {
   const [eps, setEps] = useState('1');
   const [selectedEps, setSelectedEps] = useState('');
   const [season, setSeason] = useState('1');
@@ -50,7 +49,6 @@ const Watch = ({ isLoading, type, data, similarMovies, id, seasons, episodesSS1 
   const handleChange = (value: string) => {
     setSeason(value);
   };
-  console.log(episodesSS1);
   return (
     <>
       {isLoading ? (
