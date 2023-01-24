@@ -54,7 +54,7 @@ const MovieCards = ({ movie, mediaType, size }: Props) => {
             <span className="p-1 border-white border rounded-[3px] mx-1">HD</span>
             <span className="mx-2 text-2xl ">&#8226;</span>
             <span className="p-1 rounded-sm text-black bg-[#ffc107]">
-              {movie?.vote_average.toFixed(1)}
+              {movie.vote_average?.toFixed(1)}
             </span>
           </div>
         </div>

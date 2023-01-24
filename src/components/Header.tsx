@@ -5,6 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 import Link from 'next/link';
 import Image from 'next/image';
+import Search from './Search';
 
 const Header = () => {
   return (
@@ -36,16 +37,7 @@ const Header = () => {
             </div>{' '}
           </Link>
         </div>
-        <div className="w-full mr-2 hidden md:flex">
-          <input
-            className="w-[90%] py-1 px-2 rounded-l-[4px] border-none outline-none bg-[#121212]"
-            placeholder="Enter keywords"
-            type="text"
-          />
-          <button className="text-white px-6 py-2 bg-[#4d4c4b] rounded-r-[4px] cursor-pointer ">
-            <AiOutlineSearch />
-          </button>
-        </div>
+        <Search type="search header" />
         <Link href="/login" className="block">
           {/* <button className={`${'hidden'} flex items-center hover:opacity-60 `}>
             <CgProfile
@@ -75,19 +67,6 @@ const Header = () => {
           />
           {userInfo?.username}
         </Link> */}
-      </div>
-      <div className=" w-full flex md:hidden ">
-        <input
-          className="w-full p-1 rounded-l-[4px] border-none outline-none bg-[#121212]"
-          placeholder="Enter keywords"
-          type="text"
-        />
-        <Link
-          href="/home"
-          className="text-white px-6 py-2 bg-[#4d4c4b] rounded-r-[4px] cursor-pointer "
-        >
-          <AiOutlineSearch />
-        </Link>
       </div>
     </div>
   );

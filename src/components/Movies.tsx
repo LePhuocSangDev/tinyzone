@@ -5,10 +5,10 @@ import { Movie } from 'typings';
 import MovieCards from './MovieCards';
 
 interface Props {
-  caption: string;
+  caption?: string;
   hasTypeof?: boolean;
   type?: string;
-  data: Movie[];
+  data?: Movie[];
 }
 
 const Movies = ({ caption, hasTypeof, data, type }: Props) => {
