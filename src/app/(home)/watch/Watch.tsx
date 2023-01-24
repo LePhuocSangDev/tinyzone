@@ -159,15 +159,19 @@ const Watch = ({ isLoading, type, data, similarMovies, id, seasons }: Props) => 
                     </div>
                     <div className="flex-1">
                       <p className="font-bold">
-                        Popularity: <span className="font-thin">{data.popularity}</span>
+                        Popularity: <span className="font-thin">{data?.popularity}</span>
                       </p>
                       <p className="font-bold">
                         Language:{' '}
-                        <span className="font-thin">{data.spoken_languages[0]?.english_name}</span>
+                        <span className="font-thin">
+                          {data?.spoken_languages && data?.spoken_languages[0].english_name}
+                        </span>
                       </p>
                       <p className="font-bold">
                         Production Company:{' '}
-                        <span className="font-thin">{data.production_companies[0]?.name}</span>
+                        <span className="font-thin">
+                          {data?.production_companies && data?.production_companies[0].name}
+                        </span>
                       </p>
                     </div>
                   </div>

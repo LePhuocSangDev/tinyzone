@@ -1,15 +1,8 @@
 'use client';
 
 import MovieCards from '@/components/MovieCards';
-import requests from '@/utils/requests';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { Movie } from 'typings';
-
-const fetchData = async () => {
-  const res = await fetch(requests.fetchTopRated);
-  const data = await res.json();
-  return data.results;
-};
 
 const TopRated = ({ data }: { data: Movie[] }) => {
   const handleNext = () => {

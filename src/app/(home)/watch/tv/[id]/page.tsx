@@ -1,14 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-import { AiOutlineLike, AiOutlineDislike, AiFillCaretDown, AiFillCaretRight } from 'react-icons/ai';
-import { BsCameraVideoFill, BsFillPlayFill, BsMenuButtonWide } from 'react-icons/bs';
-
-import Loader from '@/components/Loader/Loader';
-import Link from 'next/link';
-import Image from 'next/image';
-import SocialIcons from '@/components/SocialIcons';
-import MovieCards from '@/components/MovieCards';
-import { Movie } from 'typings';
-import ScrollToTop from '@/components/ScrollToTop';
 import Watch from '../../Watch';
 
 const TvShowsPage = async ({ params }: { params: { id: string } }) => {
