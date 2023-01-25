@@ -1,23 +1,23 @@
-import Movies from '@/components/Movies';
-import React from 'react';
-interface SearchParams {
-  q?: string;
-}
-interface Props {
-  searchParams?: SearchParams;
-}
-const SearchPage = async ({ searchParams }: Props) => {
-  const query = searchParams?.q?.toLowerCase();
-  const fetchData = async () => {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}`
-    );
-    const data = res.json();
-    return data;
-  };
+'use client';
 
-  const data = await fetchData();
-  const searchResults = data.results;
+import Movies from '@/components/Movies';
+import { useQueryStore } from '@/app/zustand/store';
+import React, { useEffect, useState } from 'react';
+
+const SearchPage = () => {
+  const query = useQueryStore.getState().query;
+  const [searchResults, setSearchResults] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}`
+      );
+      const data = await res.json();
+      setSearchResults(data.results);
+    };
+    fetchData();
+  }, [query]);
+
   return <Movies hasTypeof data={searchResults} />;
 };
 

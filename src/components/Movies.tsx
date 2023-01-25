@@ -37,7 +37,6 @@ const Movies = ({ caption, hasTypeof, data, type }: Props) => {
       ));
     }
   };
-
   return (
     <div>
       <div className="my-4">
