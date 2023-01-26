@@ -15,7 +15,7 @@ const Page = async () => {
   const isLoading = false;
   const topRatedMovies = await fetchData(requests.fetchTopRated);
   const trendingMovies = await fetchData(requests.fetchTrending);
-  const newTvShows = await fetchData(requests.fetchNetflixOriginals);
+  const newTvShows = await fetchData(requests.fetchNewTV);
   const actionMovies = await fetchData(requests.fetchActionMovies);
   return (
     <>

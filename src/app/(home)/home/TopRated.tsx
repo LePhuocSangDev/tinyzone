@@ -34,7 +34,12 @@ const TopRated = ({ data }: { data: Movie[] }) => {
           id="slider"
         >
           {data.map((movie: Movie, index: number) => (
-            <MovieCards mediaType={movie?.media_type || ''} key={index} size="lg" movie={movie} />
+            <MovieCards
+              mediaType={movie?.media_type || 'movie'}
+              key={index}
+              size="lg"
+              movie={movie}
+            />
           ))}
         </div>
         <button

@@ -5,7 +5,7 @@ import { MdLocalMovies } from 'react-icons/md';
 
 const Sidebar = () => {
   return (
-    <div className="text-white col-span-2 hidden lg:block">
+    <div className="text-white col-span-2 hidden lg:block sticky top-0 left-0">
       <ul className=" text-lg flex gap-6 flex-col my-4">
         <li className="p-1 ">
           <a className="flex justify-center items-center text-l gap-2" href="/home">

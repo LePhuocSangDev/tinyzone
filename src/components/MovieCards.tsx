@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { Movie } from 'typings';
-
+import notFound from '../assets/notFound.png';
 interface Props {
   movie: Movie;
   mediaType?: string;
@@ -14,6 +14,14 @@ interface Props {
 
 const MovieCards = ({ movie, mediaType, size }: Props) => {
   const [show, setShow] = useState(false);
+  const truncate = (str: string, limit: number) => {
+    if (str.length >= limit) {
+      // const newString: string = str.substring(0, limit);
+      return str.slice(0, limit) + '...';
+    } else {
+      return str;
+    }
+  };
   return (
     // to handle if there might be no mediaType
     <Link
@@ -40,21 +48,32 @@ const MovieCards = ({ movie, mediaType, size }: Props) => {
           </div>
           <Image
             className="w-full h-full object-cover"
-            src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
+            src={
+              movie?.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${movie?.poster_path}`
+                : notFound
+            }
             alt="No image to show"
             width="300"
             height="500"
           />
         </div>
-        <div className="h-[102px] flex flex-col justify-center pl-2">
-          <h4 className="text-white font-[600] text-sm lg:py-2">
-            {movie?.title || movie?.original_title || movie?.name || movie?.original_name}
+        <div className="h-[80px] flex flex-col justify-center pl-2">
+          <h4 className="text-white font-[600] text-sm lg:py-2 ">
+            {truncate(
+              movie?.title || movie?.original_title || movie?.name || movie?.original_name,
+              size === 'lg' ? 30 : 18
+            )}
           </h4>
-          <div className="text-[#aaa] text-[12px] lg:text-sm flex items-center">
-            <span className="p-1 border-white border rounded-[3px] mx-1">HD</span>
+          <div className="text-[#aaa] text-[12px] lg:text-sm flex items-center justify-evenly">
+            <span className="px-1 text-sm border-white border rounded-[3px] mx-1">HD</span>
             <span className="mx-2 text-2xl ">&#8226;</span>
-            <span className="p-1 rounded-sm text-black bg-[#ffc107]">
+            <span className="px-[2px] py-[1px] text-sm rounded-sm text-black bg-[#ffc107]">
               {movie.vote_average?.toFixed(1)}
+            </span>
+            <span className="mx-2 text-2xl ">&#8226;</span>
+            <span className="capitalize px-1 text-sm border-white border rounded-[3px] mx-1">
+              {mediaType}
             </span>
           </div>
         </div>

@@ -35,10 +35,10 @@ const Search = ({ type }: { type: string }) => {
             className="w-full p-2 rounded-l-[4px] border-none outline-none"
             placeholder="Enter keywords"
             type="text"
-            // onChange={(e) => {
-            //   setSearchQuery(e.target.value);
-            //   setQuery(e.target.value);
-            // }}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setQuery(e.target.value);
+            }}
           />
           <Link
             // href={`/search?q=${searchQuery}`}
